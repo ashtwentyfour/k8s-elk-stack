@@ -123,6 +123,8 @@ ok
 deployment.apps/kibana created
 ```
 
+* Access the Kibana Dashboard by exposing the Deployment 
+
 ## ELK Validation
 
 * Get a shell on one of the Elasticsearch Pods:
