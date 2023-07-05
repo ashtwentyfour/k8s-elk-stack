@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: es-data-02
+  namespace: elk
+spec:
+  selector:
+    name: es-data-02
+  ports:
+    - protocol: TCP
+      port: 9205
+      targetPort: 9205
+      name: api-port
+    - protocol: TCP
+      port: 9302
+      targetPort: 9302
+      name: transport-port

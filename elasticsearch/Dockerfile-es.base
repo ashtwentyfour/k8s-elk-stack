@@ -1,0 +1,30 @@
+FROM ubuntu:latest
+
+WORKDIR /etc/elasticsearch
+RUN apt update && \
+    apt install default-jre -y && \
+    apt install default-jdk -y && \
+    apt install curl -y && \
+    apt-get install gnupg -y
+RUN curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | \
+    apt-key add -
+RUN echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | \
+    tee -a /etc/apt/sources.list.d/elastic-7.x.list
+RUN apt update && \
+    apt install elasticsearch -y
+RUN echo 'vm.max_map_count=262144' >> /etc/sysctl.conf
+RUN echo 'network.host: 0.0.0.0' >> elasticsearch.yml
+ARG user=esuser
+ARG group=esuser
+ARG uid=1000
+ARG gid=1000
+RUN groupadd -g ${gid} ${group}
+RUN useradd -u ${uid} -g ${group} -s /bin/sh -m ${user}
+RUN chown -R ${uid}:${gid} /usr/share/elasticsearch
+RUN chown -R ${uid}:${gid} /etc/default/elasticsearch
+RUN chown -R ${uid}:${gid} /etc/elasticsearch
+RUN chown -R ${uid}:${gid} /var/log/elasticsearch
+RUN chown -R ${uid}:${gid} /var/lib/elasticsearch
+USER esuser
+
+ENTRYPOINT [ "/usr/share/elasticsearch/bin/elasticsearch"]

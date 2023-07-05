@@ -1,0 +1,8 @@
+FROM ashbourne1990/logstash-base:v-8.8.2
+
+RUN rm -f /usr/share/logstash/pipeline/logstash.conf
+COPY fluent-bit-01.conf /etc/logstash/conf.d/
+COPY pipelines.yml /usr/share/logstash/config/
+COPY logstash.yml /usr/share/logstash/config/
+
+ENTRYPOINT ["/usr/share/logstash/bin/logstash"]

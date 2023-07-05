@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logstash-fluent
+  namespace: elk
+spec:
+  selector:
+    matchLabels:
+      name: logstash-fluent
+  template:
+    metadata:
+      labels:
+        name: logstash-fluent
+    spec:
+      hostname: logstash
+      volumes:
+      - name: data-vol
+        persistentVolumeClaim:
+          claimName: pvc-logstash-01
+      containers:
+      - image: ashbourne1990/logstash-fluent-bit-01:v-8.8.2
+        name: logstash-fluent
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: "/usr/share/logstash/data"
+          name: data-vol

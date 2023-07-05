@@ -1,0 +1,18 @@
+FROM ashbourne1990/elasticsearch-base:es-7.17.10
+
+ARG HTTP_PORT
+
+RUN echo "discovery.seed_hosts : [es-node-01:9300]" >> elasticsearch.yml
+RUN echo "cluster.initial_master_nodes : [es-node-01]" >> elasticsearch.yml
+RUN echo "http.port: $HTTP_PORT" >> elasticsearch.yml
+RUN echo "transport.host: es-node-01" >> elasticsearch.yml
+RUN echo "node.name: es-node-01" >> elasticsearch.yml
+RUN echo 'cluster.name: elasticsearch' >> elasticsearch.yml
+RUN echo "transport.port: 9300" >> elasticsearch.yml
+RUN echo "network.publish_host: es-node-01" >> elasticsearch.yml
+RUN echo "network.bind_host: es-node-01" >> elasticsearch.yml
+RUN echo "node.roles: [ master ]" >> elasticsearch.yml
+RUN echo "logger.org.elasticsearch.discovery: TRACE" >> elasticsearch.yml
+
+EXPOSE $HTTP_PORT
+EXPOSE 9300

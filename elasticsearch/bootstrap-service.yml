@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: es-node-01
+  namespace: elk
+spec:
+  selector:
+    name: es-node-01
+  ports:
+    - protocol: TCP
+      port: 9200
+      targetPort: 9200
+      name: api-port
+    - protocol: TCP
+      port: 9300
+      targetPort: 9300
+      name: transport-port
