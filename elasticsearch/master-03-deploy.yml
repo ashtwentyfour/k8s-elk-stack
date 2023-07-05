@@ -24,14 +24,14 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 9500
-          initialDelaySeconds: 360
+          initialDelaySeconds: 240
           periodSeconds: 30
         readinessProbe:
           httpGet:
             path: /_cat/health
             port: 9202
             httpHeaders:
-          initialDelaySeconds: 240
+          initialDelaySeconds: 120
           periodSeconds: 30
         ports:
             - containerPort: 9202
