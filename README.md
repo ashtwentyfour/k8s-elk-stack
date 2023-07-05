@@ -58,8 +58,6 @@ service/elasticsearch created
 * Deploy Logstash configured to with an Elasticsearch output and HTTP input (for Fluent Bit):
 
 ```
-% kubectl apply -f elasticsearch/elasticsearch-service.yml 
-service/elasticsearch created
 % kubectl apply -f logstash/logstash-fluent-service.yml 
 service/logstash created
 % kubectl apply -f logstash/logstash-fluent-pvc.yml    
