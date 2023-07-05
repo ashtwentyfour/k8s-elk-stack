@@ -44,7 +44,7 @@ es-node-01                    1/1     Running   0          16m
 es-node-02-666d5dcc99-s7p58   1/1     Running   0          12m
 ```
 
-* Master nodes - ```master-03``` and ```master-04``` and data node ```data-02``` can also be deployed in a similar fashion of the cluster has enough resources (The ```es-node-01``` Pod can be deleted if the additional master nodes are running)
+* Master nodes - ```master-03``` and ```master-04``` and data node ```data-02``` can also be deployed in a similar fashion if the cluster has enough resources (The ```es-node-01``` Pod can be deleted if the additional master nodes are running)
 
 * Deploy the Service ```elasticsearch-service```:
 
