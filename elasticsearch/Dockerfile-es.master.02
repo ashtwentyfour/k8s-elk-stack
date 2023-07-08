@@ -1,4 +1,4 @@
-FROM ashbourne1990/elasticsearch-base:es-7.17.10
+FROM ashbourne1990/elasticsearch-base:es-7.17.11
 
 ARG HTTP_PORT
 
